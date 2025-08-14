@@ -146,7 +146,7 @@
                     <tbody>
                         <t t-foreach="o.invoice_line_ids" t-as="line">
                             <tr t-if="line.display_type == 'product'">
-                                <td><span t-field="line.name"/></td>
+                                <td><span t-if="line.name and isinstance(line.name, str)" t-esc="line.name.split(']')[1] if ']' in line.name else line.name"/></td>
                                 <td class="text-center"><span t-field="line.quantity"/></td>
                                 <td class="text-right"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
                                 <td class="text-right"><span t-esc="', '.join(map(lambda x: x.name, line.tax_ids))"/></td>
@@ -172,18 +172,20 @@
 
                             <!-- Lignes de taxes -->
                             <t t-foreach="o.tax_totals.get('subtotals', [])" t-as="subtotal">
-                                <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
-                                    <div class="col-8">
-                                        <span t-esc="subtotal['name']"/>
+                                <t t-foreach="subtotal.get('tax_groups', [])" t-as="tax_group">
+                                    <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
+                                        <div class="col-8">
+                                            <span t-esc="tax_group.get('group_name')"/>
+                                        </div>
+                                        <div class="col-4 text-end">
+                                            <span t-esc="tax_group.get('tax_amount')" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </div>
                                     </div>
-                                    <div class="col-4 text-end">
-                                        <span t-esc="subtotal['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                    </div>
-                                </div>
+                                </t>
                             </t>
 
                             <!-- Montant TTC -->
-                            <div class="row mt-2 pt-1 fw-bold" style="border-top: 2px solid black; color: #b8641c;">
+                            <div class="row mt-2 pt-2 fw-bold" style="border-top: 2px solid black; color: #b8641c;">
                                 <div class="col-8">
                                     <span>Montant TTC</span>
                                 </div>
