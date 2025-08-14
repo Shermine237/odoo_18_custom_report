@@ -13,7 +13,7 @@
         <xpath expr="//div[contains(@class, 'page')]" position="replace">
             <div class="page">
                 <!-- Espaceur pour forcer le contenu vers le bas -->
-                <div style="height: 50px;"/>
+                <div style="height: 40px;"/>
 
                 <!-- Styles CSS spécifiques au corps de la facture -->
                 <style type="text/css">

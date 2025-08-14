@@ -12,7 +12,7 @@
             <!-- Ligne 1: Logo et Slogan -->
             <div class="row align-items-end border-bottom pb-1 mb-3">
                 <div class="col-4">
-                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 75px;" alt="Logo"/>
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 80px;" alt="Logo"/>
                 </div>
                 <div class="col-8 text-end" style="font-style: italic; font-size: 11px;">
                     Bien plus qu'un Cabinet d'Expertise-Comptable, un Partenaire d'Avenir !
