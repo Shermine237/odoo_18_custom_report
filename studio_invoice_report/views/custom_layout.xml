@@ -5,27 +5,31 @@
         <!-- Ce template est un conteneur pour le header et le footer.
              Il est appelé par le rapport de facture, qui lui fournit le contexte (variables).
         -->
-        <div class="header" style="border-bottom:1px solid #000; padding-bottom:4px; margin-bottom:8px;">
-            <div class="row" style="align-items:flex-start;">
-                <!-- Logo et adresse -->
-                <div class="col-8">
-                    <div class="d-flex" style="gap:10px;">
-                        <div>
-                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-width:150px; max-height:80px;" alt="Logo"/>
-                        </div>
-                        <div style="font-size:11px; line-height:1.4;">
-                            <strong><span t-field="company.name"/>.SN SAS</strong><br/>
-                            <i class="fa fa-map-marker"/> Fenêtre Mermoz<br/>
-                            <span t-field="company.city"/> DAKAR SN 990000<br/>
-                            Sénégal<br/>
-                            <i class="fa fa-phone"/> <span t-field="company.phone"/><br/>
-                            <i class="fa fa-envelope"/> <span t-field="company.email"/>
-                        </div>
-                    </div>
+        <!-- HEADER -->
+        <div class="header">
+            <t t-set="company" t-value="o.company_id"/>
+
+            <!-- Ligne 1: Logo et Slogan -->
+            <div class="row align-items-center border-bottom pb-2 mb-3">
+                <div class="col-6">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 60px;" alt="Logo"/>
                 </div>
-                <!-- Slogan -->
-                <div class="col-4" style="text-align:right; font-size:12px; font-style:italic; white-space:nowrap;">
+                <div class="col-6 text-end" style="font-style: italic; font-size: 11px;">
                     Bien plus qu'un Cabinet d'Expertise-Comptable, un Partenaire d'Avenir !
+                </div>
+            </div>
+
+            <!-- Ligne 2: Informations de l'entreprise -->
+            <div class="row border-bottom pb-2 mb-3">
+                <div class="col-12 text-end">
+                     <div style="font-size:11px; line-height:1.4;">
+                        <strong><span t-field="company.name"/>.SN SAS</strong><br/>
+                        <i class="fa fa-map-marker"/>&#160;Fenêtre Mermoz<br/>
+                        <span t-field="company.city"/> DAKAR SN 990000<br/>
+                        Sénégal<br/>
+                        <i class="fa fa-phone"/>&#160;<span t-field="company.phone"/><br/>
+                        <i class="fa fa-envelope"/>&#160;<span t-field="company.email"/>
+                    </div>
                 </div>
             </div>
         </div>
