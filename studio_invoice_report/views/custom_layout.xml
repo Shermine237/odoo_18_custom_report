@@ -5,21 +5,26 @@
         <!-- Ce template est un conteneur pour le header et le footer.
              Il est appelé par le rapport de facture, qui lui fournit le contexte (variables).
         -->
-        <div class="header">
-            <div class="header-section row">
-                <div class="col-7">
-                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-width: 150px; max-height: 80px;" alt="Logo"/><br/>
-                    <div style="font-size: 11px; line-height: 1.5;">
-                        <strong><span t-field="company.name"/> SAS</strong><br/>
-                        <span><i class="fa fa-map-marker"/> Fenêtre Mermoz</span><br/>
-                        <span>DAKAR SN 990000</span><br/>
-                        <span>Sénégal</span><br/>
-                        <span><i class="fa fa-phone"/> <span t-field="company.phone"/></span><br/>
-                        <span><i class="fa fa-envelope"/> <span t-field="company.email"/></span>
-                        <hr style="border-top: 1px solid black; margin-top: 5px; margin-bottom: 5px;"/>
+        <div class="header" style="border-bottom:1px solid #000; padding-bottom:4px; margin-bottom:8px;">
+            <div class="row" style="align-items:flex-start;">
+                <!-- Logo et adresse -->
+                <div class="col-8">
+                    <div class="d-flex" style="gap:10px;">
+                        <div>
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-width:150px; max-height:80px;" alt="Logo"/>
+                        </div>
+                        <div style="font-size:11px; line-height:1.4;">
+                            <strong><span t-field="company.name"/>.SN SAS</strong><br/>
+                            <i class="fa fa-map-marker"/> Fenêtre&nbsp;Mermoz<br/>
+                            <span t-field="company.city"/> SN&nbsp;990000<br/>
+                            Sénégal<br/>
+                            <i class="fa fa-phone"/> <span t-field="company.phone"/><br/>
+                            <i class="fa fa-envelope"/> <span t-field="company.email"/>
+                        </div>
                     </div>
                 </div>
-                <div class="col-5" style="text-align: right; font-style: italic; font-size: 13px;">
+                <!-- Slogan -->
+                <div class="col-4" style="text-align:right; font-size:12px; font-style:italic; white-space:nowrap;">
                     Bien plus qu'un Cabinet d'Expertise-Comptable, un Partenaire d'Avenir !
                 </div>
             </div>
@@ -36,8 +41,7 @@
                     Contacts: - Ngaparou: 33 957 71 99 | Fax: 33 957 72 00 - Dakar: 33 824 31 31 - Saint Louis: 33 961 76 43 - Thiès: 33 951 97 51 
                     Ziguinchor: 33 991 07 17 | Courriel: contact@kof-experts.sn | Site Web: http://www.kof-experts.sn | Numéro fiscal: NINEA :
                     005652583 2X2 | Reg: SN THS 2015 m 3362 Références bancaires: Ngaparou/Dakar/Thiès/Ziguinchor/Saint Louis: -BOA: SN100
-                    09003 006274910007 20 / SWIFT AFRISNDAXXX - BICIS: SN010 01520 021397300065 32 / BICIS ROUME 2, Avenue L.S
-                    SENHHOR / DAKAR
+                    09003 006274910007 20 / SWIFT AFRISNDAXXX - BICIS: SN010 01520 021397300065 32 / BICIS ROUME 2, Avenue L.S SENHHOR / DAKAR
                 </p>
                 <div class="text-center">
                     Page:&#160;<span class="page"/> / <span class="topage"/>
