@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_kof_external_layout" inherit_id="web.external_layout_striped">
+        <!-- Définir la variable 'company' qui est requise par le template -->
+        <t t-set="company" t-value="o.company_id"/>
+
         <!-- 1. Remplacer l'en-tête en ciblant la première div -->
         <xpath expr="/t/div[1]" position="replace">
             <div class="header">
