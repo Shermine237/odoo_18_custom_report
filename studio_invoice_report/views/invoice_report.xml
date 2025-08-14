@@ -114,7 +114,7 @@
                         </tr>
                         <tr>
                             <td>Référence/Description</td>
-                            <td><span t-esc="o.narration or 'N/A'"/></td>
+                            <td><span t-esc="o.narration or ''"/></td>
                         </tr>
                         <tr t-if="o.partner_id.ref">
                             <td>N° du client</td>

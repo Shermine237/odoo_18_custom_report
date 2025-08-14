@@ -22,7 +22,7 @@
             <!-- Ligne 2: Informations de l'entreprise -->
             <div class="row mb-3">
                 <div class="col-auto">
-                     <div class="d-inline-block border-bottom pb-2" style="font-size:11px; line-height:1.4;">
+                     <div class="d-inline-block border-bottom pb-1" style="font-size:11px; line-height:1.4;">
                         <strong><span t-field="company.name"/>.SN SAS</strong><br/>
                         <i class="fa fa-map-marker"/>&#160;Fenêtre Mermoz<br/>
                         <span t-field="company.city"/> DAKAR SN 990000<br/>
