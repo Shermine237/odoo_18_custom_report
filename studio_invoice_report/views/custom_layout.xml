@@ -6,7 +6,7 @@
              Il est appelé par le rapport de facture, qui lui fournit le contexte (variables).
         -->
         <!-- HEADER -->
-        <div class="header mb-5">
+        <div class="header">
             <t t-set="company" t-value="o.company_id"/>
 
             <!-- Ligne 1: Logo et Slogan -->

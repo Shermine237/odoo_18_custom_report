@@ -11,7 +11,7 @@
              Ceci est fait en une seule opération pour éviter les conflits XPath.
         -->
         <xpath expr="//div[contains(@class, 'page')]" position="replace">
-            <div class="page mt-5">
+            <div class="page" style="margin-top:40px;">
                 <!-- Styles CSS spécifiques au corps de la facture -->
                 <style type="text/css">
                     .page {
