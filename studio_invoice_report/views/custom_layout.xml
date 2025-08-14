@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="studio_invoice_report.report_kof_external_layout" inherit_id="web.external_layout">
+        <!-- 1. Remplacer l'en-tête -->
+        <xpath expr="//div[has-class('header')]" position="replace">
+            <div class="header">
+                <div class="header-section row">
+                    <div class="col-7">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-width: 150px; max-height: 80px;" alt="Logo"/><br/>
+                        <div style="font-size: 11px; line-height: 1.5;">
+                            <strong><span t-field="company.name"/> SAS</strong><br/>
+                            <span><i class="fa fa-map-marker"/> Fenêtre Mermoz</span><br/>
+                            <span>DAKAR SN 990000</span><br/>
+                            <span>Sénégal</span><br/>
+                            <span><i class="fa fa-phone"/> <span t-field="company.phone"/></span><br/>
+                            <span><i class="fa fa-envelope"/> <span t-field="company.email"/></span>
+                            <hr style="border-top: 1px solid black; margin-top: 5px; margin-bottom: 5px;"/>
+                        </div>
+                    </div>
+                    <div class="col-5" style="text-align: right; font-style: italic; font-size: 13px;">
+                        Bien plus qu'un Cabinet d'Expertise-Comptable, un Partenaire d'Avenir !
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <!-- 2. Remplacer le pied de page -->
+        <xpath expr="//div[has-class('footer')]" position="replace">
+            <div class="footer">
+                <div style="font-size: 9px; border-top: 1px solid #ccc; padding-top: 5px; text-align: center;">
+                    <p>
+                        Contacts: - Ngaparou: 33 957 71 99 | Fax: 33 957 72 00 - Dakar: 33 824 31 31 - Saint Louis: 33 961 76 43 - Thiès: 33 951 97 51 - Ziguinchor: 33 991 07 17
+                        <br/>
+                        Courriel: contact@kof-experts.sn | Site Web: http://www.kof-experts.sn | Numéro fiscal: NINEA: 005652583 2X2 | Reg: SN THS 2015 m 3362
+                        <br/>
+                        Références bancaires: Ngaparou/Dakar/Thiès/Ziguinchor/Saint Louis: -BOA: SN100 09003 006274910007 20 / SWIFT AFRISNDAXXX - BICIS: SN010 01520 021397300065 32
+                    </p>
+                    <div class="text-center">
+                        Page: <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
