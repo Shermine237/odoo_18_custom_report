@@ -159,10 +159,39 @@
                 <!-- Totaux -->
                 <div class="totals-section row">
                     <div class="col-6 offset-6">
-                        <t t-call="account.document_tax_totals">
-                            <t t-set="tax_totals" t-value="o.tax_totals"/>
-                            <t t-set="currency" t-value="o.currency_id"/>
-                        </t>
+                        <div id="custom_tax_totals">
+                            <!-- Montant hors taxes -->
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong>Montant hors taxes</strong>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <span t-esc="o.tax_totals.formatted_amount_untaxed"/>
+                                </div>
+                            </div>
+
+                            <!-- Lignes de taxes -->
+                            <t t-foreach="o.tax_totals.groups_by_tax_group" t-as="tax_group">
+                                <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
+                                    <div class="col-8">
+                                        <span t-esc="tax_group.tax_group_name"/>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <span t-esc="tax_group.formatted_tax_group_amount"/>
+                                    </div>
+                                </div>
+                            </t>
+
+                            <!-- Montant TTC -->
+                            <div class="row mt-2 pt-1 fw-bold" style="border-top: 2px solid black; color: #b8641c;">
+                                <div class="col-8">
+                                    <span>Montant TTC</span>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <span t-esc="o.tax_totals.formatted_amount_total"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
