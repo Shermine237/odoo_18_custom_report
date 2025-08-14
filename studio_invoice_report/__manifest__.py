@@ -10,7 +10,9 @@ Ce module, importable via Odoo Studio, remplace le rapport de facture standard p
     'website': '',
     'depends': ['account', 'web_studio'],
     'data': [
-        'views/invoice_template.xml',
+        'views/invoice_header.xml',
+        'views/invoice_footer.xml',
+        'views/invoice_body.xml',
     ],
     'installable': True,
     'application': False,

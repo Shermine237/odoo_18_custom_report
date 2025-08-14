@@ -1,0 +1,26 @@
+<odoo>
+    <record id="report_invoice_document_kof_footer" model="ir.ui.view">
+        <field name="name">account.invoice.report.kof.footer</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.report_invoice_document"/>
+        <field name="arch" type="xml">
+            <!-- Remplacer seulement le pied de page -->
+            <xpath expr="//t[@t-call='web.external_layout']/div[has-class('footer')]" position="replace">
+                <div class="footer">
+                    <div style="font-size: 9px; border-top: 1px solid #ccc; padding-top: 5px; text-align: center;">
+                        <p>
+                            Contacts: - Ngaparou: 33 957 71 99 | Fax: 33 957 72 00 - Dakar: 33 824 31 31 - Saint Louis: 33 961 76 43 - Thiès: 33 951 97 51 - Ziguinchor: 33 991 07 17
+                            <br/>
+                            Courriel: contact@kof-experts.sn | Site Web: http://www.kof-experts.sn | Numéro fiscal: NINEA: 005652583 2X2 | Reg: SN THS 2015 m 3362
+                            <br/>
+                            Références bancaires: Ngaparou/Dakar/Thiès/Ziguinchor/Saint Louis: -BOA: SN100 09003 006274910007 20 / SWIFT AFRISNDAXXX - BICIS: SN010 01520 021397300065 32
+                        </p>
+                        <div class="text-center">
+                            Page: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
