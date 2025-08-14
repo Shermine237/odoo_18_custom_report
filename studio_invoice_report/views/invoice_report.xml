@@ -11,7 +11,10 @@
              Ceci est fait en une seule opération pour éviter les conflits XPath.
         -->
         <xpath expr="//div[contains(@class, 'page')]" position="replace">
-            <div class="page" style="margin-top:40px;">
+            <div class="page">
+                <!-- Espaceur pour forcer le contenu vers le bas -->
+                <div style="height: 50px;"/>
+
                 <!-- Styles CSS spécifiques au corps de la facture -->
                 <style type="text/css">
                     .page {
@@ -31,7 +34,7 @@
                     .invoice-title {
                         font-size: 28px;
                         font-weight: bold;
-                        color: #FF6B00;
+                        color: #b8641c;
                     }
                     .net-to-pay {
                         text-align: right;
@@ -46,7 +49,7 @@
                     .net-to-pay .amount {
                         font-size: 24px;
                         font-weight: bold;
-                        color: #FF6B00;
+                        color: #b8641c;
                     }
                     .info-table {
                         margin-top: 10px;
@@ -67,7 +70,7 @@
                         border-collapse: collapse;
                     }
                     .lines-table th {
-                        background-color: #FF6B00;
+                        background-color: #b8641c;
                         color: white;
                         padding: 8px;
                         text-align: left;
