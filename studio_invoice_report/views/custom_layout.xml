@@ -15,8 +15,8 @@
                         </div>
                         <div style="font-size:11px; line-height:1.4;">
                             <strong><span t-field="company.name"/>.SN SAS</strong><br/>
-                            <i class="fa fa-map-marker"/> Fenêtre&nbsp;Mermoz<br/>
-                            <span t-field="company.city"/> SN&nbsp;990000<br/>
+                            <i class="fa fa-map-marker"/> Fenêtre Mermoz<br/>
+                            <span t-field="company.city"/> DAKAR SN 990000<br/>
                             Sénégal<br/>
                             <i class="fa fa-phone"/> <span t-field="company.phone"/><br/>
                             <i class="fa fa-envelope"/> <span t-field="company.email"/>
