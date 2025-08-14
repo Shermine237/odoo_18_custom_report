@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_kof_external_layout" inherit_id="web.external_layout">
-        <!-- 1. Remplacer l'en-tête -->
-        <xpath expr="//div[contains(@class, 'header')]" position="replace">
+    <template id="report_kof_external_layout" inherit_id="web.external_layout_striped">
+        <!-- 1. Remplacer l'en-tête en ciblant la première div -->
+        <xpath expr="/t/div[1]" position="replace">
             <div class="header">
                 <div class="header-section row">
                     <div class="col-7">
@@ -24,8 +24,8 @@
             </div>
         </xpath>
 
-        <!-- 2. Remplacer le pied de page -->
-        <xpath expr="//div[contains(@class, 'footer')]" position="replace">
+        <!-- 2. Remplacer le pied de page en ciblant la dernière div -->
+        <xpath expr="/t/div[last()]" position="replace">
             <div class="footer">
                 <div style="font-size: 9px; border-top: 1px solid #ccc; padding-top: 5px; text-align: center;">
                     <p>
