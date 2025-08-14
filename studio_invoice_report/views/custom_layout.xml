@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_kof_external_layout">
+        <t t-set="company" t-value="o.company_id"/>
         <!-- Ce template est un conteneur pour le header et le footer.
              Il est appelé par le rapport de facture, qui lui fournit le contexte (variables).
         -->
