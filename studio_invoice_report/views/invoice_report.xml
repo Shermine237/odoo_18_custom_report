@@ -171,18 +171,15 @@
                             </div>
 
                             <!-- Lignes de taxes -->
-                            <t t-set="tax_groups" t-value="o.tax_totals.get('groups_by_tax_group', [])"/>
-                            <t t-if="tax_groups">
-                                <t t-foreach="tax_groups" t-as="tax_group">
-                                    <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
-                                        <div class="col-8">
-                                            <span t-esc="tax_group['tax_group_name']"/>
-                                        </div>
-                                        <div class="col-4 text-end">
-                                            <span t-esc="tax_group['formatted_tax_group_amount']"/>
-                                        </div>
+                            <t t-foreach="o.tax_totals.get('subtotals', [])" t-as="subtotal">
+                                <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
+                                    <div class="col-8">
+                                        <span t-esc="subtotal['name']"/>
                                     </div>
-                                </t>
+                                    <div class="col-4 text-end">
+                                        <span t-esc="subtotal['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </div>
+                                </div>
                             </t>
 
                             <!-- Montant TTC -->
