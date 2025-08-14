@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_invoice_body_kof" inherit_id="account.report_invoice_document">
-        <!-- Le corps de la facture est directement dans le template, pas besoin de traverser un t-call -->
+    <template id="report_invoice_document_kof_main" inherit_id="account.report_invoice_document">
+
+        <!-- 1. Changer le layout utilisé pour pointer vers notre layout personnalisé -->
+        <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+            <attribute name="t-call">studio_invoice_report.report_kof_external_layout</attribute>
+        </xpath>
+
+        <!-- 2. Remplacer le contenu de la page (le corps de la facture) -->
         <xpath expr="//div[contains(@class, 'page')]" position="replace">
             <div class="page">
                 <!-- Styles CSS spécifiques au corps de la facture -->
@@ -156,5 +162,6 @@
                 </div>
             </div>
         </xpath>
+
     </template>
 </odoo>
