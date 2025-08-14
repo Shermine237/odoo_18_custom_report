@@ -31,16 +31,16 @@
         </div>
 
         <div class="footer">
-            <div style="font-size: 9px; border-top: 1px solid #ccc; padding-top: 5px; text-align: center;">
+            <div style="font-size: 9px; border-top: 1px solid #ccc; padding-top: 5px; text-align: center; line-height: 1.4;">
                 <p>
-                    Contacts: - Ngaparou: 33 957 71 99 | Fax: 33 957 72 00 - Dakar: 33 824 31 31 - Saint Louis: 33 961 76 43 - Thiès: 33 951 97 51 - Ziguinchor: 33 991 07 17
-                    <br/>
-                    Courriel: contact@kof-experts.sn | Site Web: http://www.kof-experts.sn | Numéro fiscal: NINEA: 005652583 2X2 | Reg: SN THS 2015 m 3362
-                    <br/>
-                    Références bancaires: Ngaparou/Dakar/Thiès/Ziguinchor/Saint Louis: -BOA: SN100 09003 006274910007 20 / SWIFT AFRISNDAXXX - BICIS: SN010 01520 021397300065 32
+                    Contacts:&nbsp;-&nbsp;Ngaparou:&nbsp;33&nbsp;957&nbsp;71&nbsp;99&nbsp;| Fax:&nbsp;33&nbsp;957&nbsp;72&nbsp;00&nbsp;-&nbsp;Dakar:&nbsp;33&nbsp;824&nbsp;31&nbsp;31&nbsp;-&nbsp;Saint&nbsp;Louis:&nbsp;33&nbsp;961&nbsp;76&nbsp;43&nbsp;-&nbsp;Thiès:&nbsp;33&nbsp;951&nbsp;97&nbsp;51&nbsp;-&nbsp;Ziguinchor:&nbsp;33&nbsp;991&nbsp;07&nbsp;17&nbsp;| Courriel:&nbsp;contact@kof-experts.sn&nbsp;| Site&nbsp;Web:&nbsp;http://www.kof-experts.sn<br/>
+                    Numéro&nbsp;fiscal:&nbsp;NINEA:&nbsp;005652583&nbsp;2X2&nbsp;| Reg:&nbsp;SN&nbsp;THS&nbsp;2015&nbsp;m&nbsp;3362
+                </p>
+                <p>
+                    Références&nbsp;bancaires:&nbsp;Ngaparou/Dakar/Thiès/Ziguinchor/Saint&nbsp;Louis:&nbsp;-BOA:&nbsp;SN100&nbsp;09003&nbsp;006274910007&nbsp;20&nbsp;/&nbsp;SWIFT&nbsp;AFRISNDAXXX&nbsp;-&nbsp;BICIS:&nbsp;SN010&nbsp;01520&nbsp;021397300065&nbsp;32&nbsp;/&nbsp;BICIS&nbsp;ROUME&nbsp;2,&nbsp;Avenue&nbsp;L.S&nbsp;SENHHOR&nbsp;/&nbsp;DAKAR
                 </p>
                 <div class="text-center">
-                    Page: <span class="page"/> / <span class="topage"/>
+                    Page:&nbsp;<span class="page"/> / <span class="topage"/>
                 </div>
             </div>
         </div>
