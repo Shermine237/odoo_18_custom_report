@@ -11,7 +11,8 @@
                 <t t-set="company" t-value="o.company_id"/>
 
                 <!-- Le contenu ci-dessous sera inséré dans le t-out='0' du layout -->
-                <div class="page">
+                <!-- Contenu principal de la facture -->
+
                     <!-- Styles CSS spécifiques au corps de la facture -->
                     <style type="text/css">
                         .page {
@@ -162,7 +163,7 @@
                             </t>
                         </div>
                     </div>
-                </div>
+                <!-- fin contenu principal -->
             </t>
         </xpath>
     </template>
