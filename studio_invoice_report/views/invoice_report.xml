@@ -166,20 +166,23 @@
                                     <strong>Montant hors taxes</strong>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <span t-esc="o.tax_totals.formatted_amount_untaxed"/>
+                                    <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </div>
                             </div>
 
                             <!-- Lignes de taxes -->
-                            <t t-foreach="o.tax_totals.groups_by_tax_group" t-as="tax_group">
-                                <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
-                                    <div class="col-8">
-                                        <span t-esc="tax_group.tax_group_name"/>
+                            <t t-set="tax_groups" t-value="o.tax_totals.get('groups_by_tax_group', [])"/>
+                            <t t-if="tax_groups">
+                                <t t-foreach="tax_groups" t-as="tax_group">
+                                    <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
+                                        <div class="col-8">
+                                            <span t-esc="tax_group['tax_group_name']"/>
+                                        </div>
+                                        <div class="col-4 text-end">
+                                            <span t-esc="tax_group['formatted_tax_group_amount']"/>
+                                        </div>
                                     </div>
-                                    <div class="col-4 text-end">
-                                        <span t-esc="tax_group.formatted_tax_group_amount"/>
-                                    </div>
-                                </div>
+                                </t>
                             </t>
 
                             <!-- Montant TTC -->
@@ -188,7 +191,7 @@
                                     <span>Montant TTC</span>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <span t-esc="o.tax_totals.formatted_amount_total"/>
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </div>
                             </div>
                         </div>
