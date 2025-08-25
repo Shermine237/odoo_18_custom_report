@@ -23,11 +23,11 @@
             <div class="row mb-3">
                 <div class="col-auto">
                      <div class="d-inline-block border-bottom pb-1" style="font-size:11px; line-height:1.4;">
-                        <strong><span t-field="company.name"/>.SN SAS</strong><br/>
+                        <strong><span t-field="company.name"/> SAS</strong><br/>
                         <i class="fa fa-map-marker"/>&#160;Fenêtre Mermoz<br/>
-                        <span t-field="company.city"/> DAKAR SN 990000<br/>
+                        DAKAR SN 990000<br/>
                         Sénégal<br/>
-                        <i class="fa fa-phone"/>&#160;<span t-field="company.phone"/><br/>
+                        <i class="fa fa-phone"/>&#160;33 824 31 31<br/>
                         <i class="fa fa-envelope"/>&#160;<span t-field="company.email"/>
                     </div>
                 </div>
