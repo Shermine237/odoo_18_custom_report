@@ -104,7 +104,15 @@
                         </span>
                     </div>
                     <div class="col-5 net-to-pay">
-                        <h3>Net à payer</h3>
+                        <h3>
+                            <t t-if="o.payment_state == 'paid'">Payé</t>
+                            <t t-elif="o.payment_state == 'not_paid'">Net à payer</t>
+                            <t t-elif="o.payment_state == 'in_payment'">Paiement en cours</t>
+                            <t t-elif="o.payment_state == 'partial'">Partiellement payé</t>
+                            <t t-elif="o.payment_state == 'reversed'">Contre-passé</t>
+                            <t t-elif="o.payment_state == 'invoicing_legacy'">Ancien module</t>
+                            <t t-else="">En attente</t>
+                        </h3>
                         <div class="amount">
                             <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                         </div>
