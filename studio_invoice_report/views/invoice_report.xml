@@ -103,7 +103,11 @@
                             <span t-field="o.name"/>
                         </span>
                     </div>
-                    <div class="col-5 net-to-pay">
+                </div>
+
+                <!-- Tableau d'informations -->
+                <div class="row">
+                    <div class="col-7 net-to-pay">
                         <h3>
                             <t t-if="o.payment_state == 'paid'">Payé</t>
                             <t t-elif="o.payment_state == 'not_paid'">Net à payer</t>
@@ -118,10 +122,6 @@
                         </div>
                         <!-- <small>Paiement: <span t-field="o.payment_reference"/></small> -->
                     </div>
-                </div>
-
-                <!-- Tableau d'informations -->
-                <div class="row">
                     <div class="col-7">
                         <table class="info-table">
                             <tr>
