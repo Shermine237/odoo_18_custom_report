@@ -118,7 +118,22 @@
                             <t t-else="">En attente</t>
                         </h3>
                         <div class="amount">
-                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            <!-- Affichage conditionnel du montant selon le statut de paiement -->
+                            <t t-if="o.payment_state == 'paid'">
+                                <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <br/><small style="color: green;">✓ Intégralement payé</small>
+                            </t>
+                            <t t-elif="o.payment_state == 'partial'">
+                                <span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <br/><small>Payé: <span t-esc="'{:,.2f} {}'.format(o.amount_total - o.amount_residual, o.currency_id.symbol or '')"/></small>
+                            </t>
+                            <t t-elif="o.payment_state == 'reversed'">
+                                <span style="text-decoration: line-through;" t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <br/><small style="color: red;">Annulé</small>
+                            </t>
+                            <t t-else="">
+                                <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </t>
                         </div>
                         <!-- <small>Paiement: <span t-field="o.payment_reference"/></small> -->
                     </div>
@@ -178,7 +193,7 @@
                                     <strong>Montant hors taxes</strong>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </div>
                             </div>
 
@@ -190,7 +205,7 @@
                                             <span t-esc="tax_group.get('group_name')"/>
                                         </div>
                                         <div class="col-4 text-end">
-                                            <span t-esc="tax_group.get('tax_amount')" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            <span t-esc="'{:,.2f} {}'.format(tax_group.get('tax_amount', 0), o.currency_id.symbol or '')"/>
                                         </div>
                                     </div>
                                 </t>
