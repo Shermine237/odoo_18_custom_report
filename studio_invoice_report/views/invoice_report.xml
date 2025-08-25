@@ -97,7 +97,11 @@
                 <!-- Titre de la facture et Net à payer -->
                 <div class="invoice-title-section row">
                     <div class="col-7">
-                        <span class="invoice-title" t-field="o.name"/>
+                        <span class="invoice-title">
+                            <t t-if="o.move_type == 'out_refund'">Avoir </t>
+                            <t t-else="">Facture </t>
+                            <span t-field="o.name"/>
+                        </span>
                     </div>
                     <div class="col-5 net-to-pay">
                         <h3>Net à payer</h3>
