@@ -108,7 +108,7 @@
                         <div class="amount">
                             <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                         </div>
-                        <small>Paiement: <span t-field="o.payment_reference"/></small>
+                        <!-- <small>Paiement: <span t-field="o.payment_reference"/></small> -->
                     </div>
                 </div>
 
