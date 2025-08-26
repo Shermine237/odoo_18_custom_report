@@ -89,8 +89,15 @@
                 <!-- Adresse du partenaire -->
                 <div class="address-section row">
                     <div class="col-6 offset-6 partner-address">
-                        <strong>À: <span t-field="o.partner_id.name"/></strong><br/>
-                        <span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                        <div style="text-align: right;">
+                            <strong>À: <span t-field="o.partner_id.name"/></strong><br/>
+                            <span t-field="o.partner_id.street" t-if="o.partner_id.street"/><br t-if="o.partner_id.street"/>
+                            <span t-field="o.partner_id.street2" t-if="o.partner_id.street2"/><br t-if="o.partner_id.street2"/>
+                            <span t-field="o.partner_id.city" t-if="o.partner_id.city"/>
+                            <span t-field="o.partner_id.state_id.name" t-if="o.partner_id.state_id"/>
+                            <br t-if="o.partner_id.city or o.partner_id.state_id"/>
+                            <span t-field="o.partner_id.country_id.name" t-if="o.partner_id.country_id"/>
+                        </div>
                     </div>
                 </div>
 
