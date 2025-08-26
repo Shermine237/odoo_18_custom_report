@@ -19,7 +19,7 @@
                 <style type="text/css">
                     .page {
                         font-family: 'Helvetica', sans-serif;
-                        font-size: 12px;
+                        font-size: 15px;
                         color: #333;
                     }
                     .address-section {
@@ -37,7 +37,7 @@
                         color: #b8641c;
                     }
                     .net-to-pay {
-                        text-align: right;
+                        text-align: left;
                         border: 1px solid #ddd;
                         padding: 10px;
                         background-color: #f9f9f9;
@@ -107,7 +107,7 @@
 
                 <!-- Tableau d'informations -->
                 <div class="row">
-                    <div class="col-7 net-to-pay">
+                    <div class="col-6 net-to-pay">
                         <h3>
                             <t t-if="o.payment_state == 'paid'">Payé</t>
                             <t t-elif="o.payment_state == 'not_paid'">Net à payer</t>
@@ -137,7 +137,7 @@
                         </div>
                         <!-- <small>Paiement: <span t-field="o.payment_reference"/></small> -->
                     </div>
-                    <div class="col-7">
+                    <div class="col-6">
                         <table class="info-table">
                             <tr>
                                 <td>Date</td>
@@ -223,6 +223,9 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Élément qrcode vide pour éviter les erreurs XPath d'autres templates -->
+                <div id="qrcode" style="display: none;"></div>
             </div>
         </xpath>
     </template>
