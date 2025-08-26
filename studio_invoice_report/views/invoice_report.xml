@@ -240,6 +240,36 @@
                                     <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </div>
                             </div>
+
+                            <!-- Section des paiements partiels -->
+                            <t t-if="o.payment_state == 'partial'">
+                                <t t-set="payment_lines" t-value="o.line_ids.filtered(lambda x: x.account_id.account_type in ('asset_receivable', 'liability_payable') and x.matched_credit_ids)"/>
+                                <t t-if="payment_lines">
+                                    <div class="row mt-3 pt-2" style="border-top: 1px solid #ddd;">
+                                        <div class="col-12">
+                                            <strong>Paiements effectués :</strong>
+                                        </div>
+                                    </div>
+                                    <t t-foreach="payment_lines.mapped('matched_credit_ids')" t-as="payment_match">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <span t-esc="'Payé le ' + payment_match.credit_move_id.date.strftime('%d/%m/%Y')"/>
+                                            </div>
+                                            <div class="col-4 text-end">
+                                                <span t-esc="'{:,.0f} {}'.format(payment_match.amount, o.currency_id.symbol or '')"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <div class="row mt-1 pt-1" style="border-top: 1px solid #ddd;">
+                                        <div class="col-8">
+                                            <strong>Montant dû</strong>
+                                        </div>
+                                        <div class="col-4 text-end">
+                                            <strong><span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></strong>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
                         </div>
                     </div>
                 </div>
