@@ -10,11 +10,11 @@
             <t t-set="company" t-value="o.company_id"/>
 
             <!-- Ligne 1: Logo et Slogan -->
-            <div class="row align-items-end border-bottom pb-1 mb-3">
-                <div class="col-4">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #ddd; margin-bottom: 15px;">
+                <div style="flex: 0 0 auto;">
                     <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 80px;" alt="Logo"/>
                 </div>
-                <div class="col-8 text-end" style="font-style: italic; font-size: 11px;">
+                <div style="flex: 1; text-align: right; font-style: italic; font-size: 12px; padding-left: 20px; padding-bottom: 10px;">
                     Bien plus qu'un Cabinet d'Expertise-Comptable, un Partenaire d'Avenir !
                 </div>
             </div>
