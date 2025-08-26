@@ -73,7 +73,6 @@
                         background-color: #b8641c;
                         color: white;
                         padding: 8px;
-                        text-align: left;
                     }
                     .lines-table td {
                         padding: 8px;
@@ -83,6 +82,7 @@
                         margin-top: 20px;
                     }
                     .text-right { text-align: right; }
+                    .text-left { text-align: left; }
                     .text-center { text-align: center; }
                 </style>
 
@@ -124,8 +124,8 @@
                                 <br/><small style="color: green;">✓ Intégralement payé</small>
                             </t>
                             <t t-elif="o.payment_state == 'partial'">
-                                <span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                <br/><small>Payé: <span t-esc="'{:,.2f} {}'.format(o.amount_total - o.amount_residual, o.currency_id.symbol or '')"/></small>
+                                <span t-esc="'{:,.2f} {}'.format(o.amount_total - o.amount_residual, o.currency_id.symbol or '')"/>
+                                <br/><small>Restant : <span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></small>
                             </t>
                             <t t-elif="o.payment_state == 'reversed'">
                                 <span style="text-decoration: line-through;" t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
@@ -163,20 +163,20 @@
                 <table class="lines-table">
                     <thead>
                         <tr>
-                            <th>Prestation</th>
-                            <th class="text-right">Qte</th>
-                            <th class="text-right">Prix unitaire</th>
-                            <th class="text-right">Taxe</th>
+                            <th class="text-left">Prestation</th>
+                            <th class="text-left">Qte</th>
+                            <th class="text-left">Prix unitaire</th>
+                            <th class="text-left">Taxe</th>
                             <th class="text-right">Montant</th>
                         </tr>
                     </thead>
                     <tbody>
                         <t t-foreach="o.invoice_line_ids" t-as="line">
                             <tr t-if="line.display_type == 'product'">
-                                <td><span t-esc="(line.name.split(']')[-1]).strip() if line.name and ']' in line.name else (line.name or '').strip()"/></td>
-                                <td class="text-right"><span t-field="line.quantity"/></td>
-                                <td class="text-right"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
-                                <td class="text-right"><span t-esc="', '.join(map(lambda x: x.name, line.tax_ids))"/></td>
+                                <td class="text-left"><span t-esc="(line.name.split(']')[-1]).strip() if line.name and ']' in line.name else (line.name or '').strip()"/></td>
+                                <td class="text-left"><span t-field="line.quantity"/></td>
+                                <td class="text-left"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                <td class="text-left"><span t-esc="', '.join(map(lambda x: x.name, line.tax_ids))"/></td>
                                 <td class="text-right"><span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
                             </tr>
                         </t>
