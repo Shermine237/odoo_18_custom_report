@@ -41,6 +41,7 @@
                         border: 1px solid #ddd;
                         padding: 10px;
                         background-color: #f9f9f9;
+                        padding-left: 25px;
                     }
                     .net-to-pay h3 {
                         margin: 0;
@@ -222,16 +223,36 @@
                             </div>
 
                             <!-- Lignes de taxes -->
-                            <t t-foreach="o.tax_totals.get('subtotals', [])" t-as="subtotal">
-                                <t t-foreach="subtotal.get('tax_groups', [])" t-as="tax_group">
-                                    <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
-                                        <div class="col-8">
-                                            <span t-esc="tax_group.get('group_name')"/>
+                            <t t-if="o.tax_totals.get('groups_by_subtotal')">
+                                <!-- Cas Odoo 17 -->
+                                <t t-foreach="o.tax_totals['groups_by_subtotal'].items()" t-as="subtotal">
+                                    <t t-foreach="subtotal[1]" t-as="tax_group">
+                                        <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
+                                            <div class="col-8">
+                                                TVA <span t-esc="tax_group.get('tax_group_name')"/>
+                                            </div>
+                                            <div class="col-4 text-end">
+                                                <span t-esc="tax_group.get('tax_group_amount')" 
+                                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </div>
                                         </div>
-                                        <div class="col-4 text-end">
-                                            <span t-esc="'{:,.2f} {}'.format(tax_group.get('tax_amount', 0), o.currency_id.symbol or '')"/>
+                                    </t>
+                                </t>
+                            </t>
+                            <t t-elif="o.tax_totals.get('subtotals')">
+                                <!-- Cas Odoo 18 -->
+                                <t t-foreach="o.tax_totals['subtotals']" t-as="subtotal">
+                                    <t t-foreach="subtotal.get('tax_groups', [])" t-as="tax_group">
+                                        <div class="row mt-1 pt-1" style="border-top: 1px solid #dee2e6;">
+                                            <div class="col-8">
+                                                TVA <span t-esc="tax_group.get('group_name')"/>
+                                            </div>
+                                            <div class="col-4 text-end">
+                                                <span t-esc="tax_group.get('tax_amount')" 
+                                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </t>
                                 </t>
                             </t>
 
