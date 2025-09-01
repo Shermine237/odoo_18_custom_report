@@ -114,6 +114,30 @@
 
                 <!-- Tableau d'informations -->
                 <div class="row">
+                    <div class="col-6">
+                        <table class="info-table">
+                            <tr>
+                                <td>Date</td>
+                                <td><span t-field="o.invoice_date" t-options='{"format": "dd/MM/yyyy"}'/></td>
+                            </tr>
+                            <tr>
+                                <td>Document d'origine</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Référence/Description</td>
+                                <td><span t-esc="o.narration or ''"/></td>
+                            </tr>
+                            <tr t-if="o.partner_id.ref">
+                                <td>N° du client</td>
+                                <td><span t-field="o.partner_id.ref"/></td>
+                            </tr>
+                            <tr>
+                                <td>Date d'échéance</td>
+                                <td><span t-field="o.invoice_date_due" t-options='{"format": "dd/MM/yyyy"}'/></td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="col-6 net-to-pay">
                         <h3>
                             <t t-if="o.payment_state == 'paid'">
@@ -156,26 +180,6 @@
                             </t>
                         </div>
                         <!-- <small>Paiement: <span t-field="o.payment_reference"/></small> -->
-                    </div>
-                    <div class="col-6">
-                        <table class="info-table">
-                            <tr>
-                                <td>Date</td>
-                                <td><span t-field="o.invoice_date" t-options='{"format": "dd/MM/yyyy"}'/></td>
-                            </tr>
-                            <tr>
-                                <td>Référence/Description</td>
-                                <td><span t-esc="o.narration or ''"/></td>
-                            </tr>
-                            <tr t-if="o.partner_id.ref">
-                                <td>N° du client</td>
-                                <td><span t-field="o.partner_id.ref"/></td>
-                            </tr>
-                            <tr>
-                                <td>Date d'échéance</td>
-                                <td><span t-field="o.invoice_date_due" t-options='{"format": "dd/MM/yyyy"}'/></td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
 
