@@ -174,23 +174,23 @@
                             <!-- Affichage conditionnel du montant selon le statut de paiement si print_with_payments est True -->
                             <t t-if="print_with_payments">
                                 <t t-if="o.payment_state == 'paid'">
-                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                                 </t>
                                 <t t-elif="o.payment_state == 'partial'">
-                                    <span t-esc="'{:,.2f} {}'.format(o.amount_total - o.amount_residual, o.currency_id.symbol or '')"/>
-                                    <br/><small>Restant : <span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></small>
+                                    <span t-esc="'{:,.2f} {}'.format(o.amount_total - o.amount_residual, o.currency_id.symbol or '').replace(',', ' ').replace('.', ',')"/>
+                                    <br/><small>Restant : <span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/></small>
                                 </t>
                                 <t t-elif="o.payment_state == 'reversed'">
-                                    <span style="text-decoration: line-through;" t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span style="text-decoration: line-through;" t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                                     <br/><small style="color: red;">Annulé</small>
                                 </t>
                                 <t t-else="">
-                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                                 </t>
                             </t>
                             <!-- Affichage simple si print_with_payments est False -->
                             <t t-else="">
-                                <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                             </t>
                         </div>
                         <!-- <small>Paiement: <span t-field="o.payment_reference"/></small> -->
@@ -213,9 +213,9 @@
                             <tr t-if="line.display_type == 'product'">
                                 <td class="text-left"><span t-esc="(line.name.split(']')[-1]).strip() if line.name and ']' in line.name else (line.name or '').strip()"/></td>
                                 <td class="text-left"><span t-field="line.quantity"/></td>
-                                <td class="text-left"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                <td class="text-left"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/></td>
                                 <td class="text-left"><span t-esc="', '.join(map(lambda x: x.name, line.tax_ids))"/></td>
-                                <td class="text-right"><span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                <td class="text-right"><span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/></td>
                             </tr>
                         </t>
                     </tbody>
@@ -231,7 +231,7 @@
                                     <strong>Montant hors taxes</strong>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                                 </div>
                             </div>
 
@@ -246,7 +246,7 @@
                                             </div>
                                             <div class="col-4 text-end">
                                                 <span t-esc="tax_group.get('tax_group_amount')" 
-                                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                    t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                                             </div>
                                         </div>
                                     </t>
@@ -262,7 +262,7 @@
                                             </div>
                                             <div class="col-4 text-end">
                                                 <span t-esc="tax_group.get('tax_amount')" 
-                                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                    t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                                             </div>
                                         </div>
                                     </t>
@@ -275,7 +275,7 @@
                                     <span>Montant TTC</span>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/>
                                 </div>
                             </div>
 
@@ -294,7 +294,7 @@
                                                 <span t-esc="'Payé le ' + payment_match.credit_move_id.date.strftime('%d/%m/%Y')"/>
                                             </div>
                                             <div class="col-4 text-end">
-                                                <span t-esc="'{:,.0f} {}'.format(payment_match.amount, o.currency_id.symbol or '')"/>
+                                                <span t-esc="'{:,.0f} {}'.format(payment_match.amount, o.currency_id.symbol or '').replace(',', ' ')"/>
                                             </div>
                                         </div>
                                     </t>
@@ -303,7 +303,7 @@
                                             <strong>Montant dû</strong>
                                         </div>
                                         <div class="col-4 text-end">
-                                            <strong><span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></strong>
+                                            <strong><span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/></strong>
                                         </div>
                                     </div>
                                 </t>
