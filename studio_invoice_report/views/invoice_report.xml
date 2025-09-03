@@ -103,7 +103,7 @@
                 </div>
 
                 <!-- Titre de la facture et Net à payer -->
-                <div class="invoice-title-section row">
+                <div class="invoice-title-section row pt-3">
                     <div class="col-7">
                         <span class="invoice-title">
                             <t t-if="o.move_type == 'out_refund'">Avoir </t>
@@ -211,7 +211,7 @@
                     <tbody>
                         <t t-foreach="o.invoice_line_ids" t-as="line">
                             <tr t-if="line.display_type == 'product'">
-                                <td class="text-left"><span t-esc="(line.name.split(']')[-1]).strip() if line.name and ']' in line.name else (line.name or '').strip()"/></td>
+                                <td class="text-left"><span t-esc="(line.name.split('\n')[-1].strip() if len(line.name.split('\n')) > 1 else line.name.split(']')[-1].strip()) if line.name else ''"/></td>
                                 <td class="text-left"><span t-field="line.quantity"/></td>
                                 <td class="text-left"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id, "thousands_sep": " ", "decimal_sep": ","}'/></td>
                                 <td class="text-left"><span t-esc="', '.join(map(lambda x: x.name, line.tax_ids))"/></td>
