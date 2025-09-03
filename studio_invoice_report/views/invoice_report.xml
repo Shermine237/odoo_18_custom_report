@@ -141,41 +141,54 @@
                     </div>
                     <div class="col-6 net-to-pay">
                         <h3>
-                            <t t-if="o.payment_state == 'paid'">
-                                <span class="text-success">Payé</span>
+                            <!-- Affichage avec statuts de paiement si print_with_payments est True -->
+                            <t t-if="print_with_payments">
+                                <t t-if="o.payment_state == 'paid'">
+                                    <span class="text-success">Payé</span>
+                                </t>
+                                <t t-elif="o.payment_state == 'not_paid'">
+                                    <span class="text-danger">Net à payer</span>
+                                </t>
+                                <t t-elif="o.payment_state == 'in_payment'">
+                                    <span class="text-warning">Paiement en cours</span>
+                                </t>
+                                <t t-elif="o.payment_state == 'partial'">
+                                    <span class="text-warning">Partiellement payé</span>
+                                </t>
+                                <t t-elif="o.payment_state == 'reversed'">
+                                    <span class="text-secondary">Contre-passé</span>
+                                </t>
+                                <t t-elif="o.payment_state == 'invoicing_legacy'">
+                                    <span class="text-secondary">Ancien module</span>
+                                </t>
+                                <t t-else="">
+                                    <span class="text-muted">En attente</span>
+                                </t>
                             </t>
-                            <t t-elif="o.payment_state == 'not_paid'">
-                                <span class="text-danger">Net à payer</span>
-                            </t>
-                            <t t-elif="o.payment_state == 'in_payment'">
-                                <span class="text-warning">Paiement en cours</span>
-                            </t>
-                            <t t-elif="o.payment_state == 'partial'">
-                                <span class="text-warning">Partiellement payé</span>
-                            </t>
-                            <t t-elif="o.payment_state == 'reversed'">
-                                <span class="text-secondary">Contre-passé</span>
-                            </t>
-                            <t t-elif="o.payment_state == 'invoicing_legacy'">
-                                <span class="text-secondary">Ancien module</span>
-                            </t>
+                            <!-- Affichage simple si print_with_payments est False -->
                             <t t-else="">
-                                <span class="text-muted">En attente</span>
+                                Net à payer
                             </t>
                         </h3>
                         <div class="amount">
-                            <!-- Affichage conditionnel du montant selon le statut de paiement -->
-                            <t t-if="o.payment_state == 'paid'">
-                                <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            <!-- Affichage conditionnel du montant selon le statut de paiement si print_with_payments est True -->
+                            <t t-if="print_with_payments">
+                                <t t-if="o.payment_state == 'paid'">
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </t>
+                                <t t-elif="o.payment_state == 'partial'">
+                                    <span t-esc="'{:,.2f} {}'.format(o.amount_total - o.amount_residual, o.currency_id.symbol or '')"/>
+                                    <br/><small>Restant : <span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></small>
+                                </t>
+                                <t t-elif="o.payment_state == 'reversed'">
+                                    <span style="text-decoration: line-through;" t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <br/><small style="color: red;">Annulé</small>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </t>
                             </t>
-                            <t t-elif="o.payment_state == 'partial'">
-                                <span t-esc="'{:,.2f} {}'.format(o.amount_total - o.amount_residual, o.currency_id.symbol or '')"/>
-                                <br/><small>Restant : <span t-field="o.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></small>
-                            </t>
-                            <t t-elif="o.payment_state == 'reversed'">
-                                <span style="text-decoration: line-through;" t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                <br/><small style="color: red;">Annulé</small>
-                            </t>
+                            <!-- Affichage simple si print_with_payments est False -->
                             <t t-else="">
                                 <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                             </t>
@@ -266,8 +279,8 @@
                                 </div>
                             </div>
 
-                            <!-- Section des paiements partiels -->
-                            <t t-if="o.payment_state == 'partial'">
+                            <!-- Section des paiements partiels - uniquement si print_with_payments est True -->
+                            <t t-if="print_with_payments and o.payment_state == 'partial'">
                                 <t t-set="payment_lines" t-value="o.line_ids.filtered(lambda x: x.account_id.account_type in ('asset_receivable', 'liability_payable') and x.matched_credit_ids)"/>
                                 <t t-if="payment_lines">
                                     <div class="row mt-3 pt-2" style="border-top: 1px solid #ddd;">
